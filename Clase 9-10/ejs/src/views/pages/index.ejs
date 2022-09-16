@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <h3>ESTOY EN LA MITAD</h3>
+    <% if(render){ %>
+    <ul>
+      <% usuarios.forEach(usuario=>{ %>
+      <li><%=usuario.nombre %> <%=usuario.apellido %></li>
+      <% }) %>
+    </ul>
+
+    <% } %> <%- include('../partials/footer') %>
+  </body>
+</html>

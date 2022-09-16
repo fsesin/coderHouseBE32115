@@ -1,0 +1,1 @@
+[{"nombre":"iPhone","precio":"400","stock":"20","id":1},{"nombre":"iPad","precio":"200","stock":"10","id":2}]
