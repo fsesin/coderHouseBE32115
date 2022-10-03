@@ -1,0 +1,22 @@
+{
+  "name": "ejemplobabel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel ./primer.js -o ./segundo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

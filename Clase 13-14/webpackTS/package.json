@@ -1,0 +1,22 @@
+{
+  "name": "webpackts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/serverBundle.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.14",
+    "express": "^4.18.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}

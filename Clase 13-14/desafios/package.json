@@ -1,0 +1,24 @@
+{
+  "name": "desafios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel ./desafio1/color.js -o ./desafio1/archivoFinal.js",
+    "build-tsc":"tsc ./desafio2/color.ts",
+    "start": "node ./desafio2/color.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "typescript": "^4.8.3"
+  }
+}

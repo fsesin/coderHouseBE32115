@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.div = exports.mult = exports.res = exports.sum = void 0;
+const sum = (num1, num2) => num1 + num2;
+exports.sum = sum;
+const res = (num1, num2) => num1 - num2;
+exports.res = res;
+const mult = (num1, num2) => num1 * num2;
+exports.mult = mult;
+const div = (num1, num2) => num1 / num2;
+exports.div = div;
