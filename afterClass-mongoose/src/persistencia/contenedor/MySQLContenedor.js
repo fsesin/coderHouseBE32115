@@ -1,0 +1,8 @@
+class MySQLContenedor {
+
+    async findAll(){
+        
+    }
+
+
+}
