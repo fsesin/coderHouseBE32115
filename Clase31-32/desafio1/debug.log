@@ -1,0 +1,6 @@
+[2022-12-03T11:12:26.457] [INFO] prod - Escuchando al puerto 8082
+[2022-12-03T11:12:38.777] [INFO] prod - Operacion exitosa
+[2022-12-03T11:12:51.069] [ERROR] prod - Ingresaste un valor incorrecto
+[2022-12-03T11:13:11.164] [WARN] prod - Recurso invalido
+[2022-12-03T11:17:14.526] [INFO] prod - Escuchando al puerto 8082
+[2022-12-03T11:17:17.988] [INFO] prod - Operacion exitosa

@@ -1,0 +1,607 @@
+Statistical profiling result from debug-v8.log, (234 ticks, 3 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+     12    5.1%          /usr/lib/system/libsystem_pthread.dylib
+     10    4.3%          /usr/lib/system/libsystem_c.dylib
+      7    3.0%          /usr/lib/system/libsystem_kernel.dylib
+      5    2.1%          /usr/lib/libc++.1.dylib
+      2    0.9%          /usr/lib/system/libsystem_malloc.dylib
+      1    0.4%          /usr/lib/libobjc.A.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      1    0.4%    0.5%  LazyCompile: *normalizeString node:path:66:25
+
+ [C++]:
+   ticks  total  nonlib   name
+     94   40.2%   47.7%  t node::fs::BindingData::SelfSize() const
+     26   11.1%   13.2%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     21    9.0%   10.7%  T _semaphore_destroy
+     14    6.0%    7.1%  T _posix_spawn_file_actions_adddup2
+      9    3.8%    4.6%  t node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      5    2.1%    2.5%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char)
+      3    1.3%    1.5%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      3    1.3%    1.5%  t node::fs::InternalModuleReadJSON(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    1.3%    1.5%  T _kdebug_trace_string
+      2    0.9%    1.0%  t node::fs::Open(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.9%    1.0%  t node::fs::InternalModuleStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.9%    1.0%  T _mach_get_times
+      2    0.9%    1.0%  T __simple_getenv
+      1    0.4%    0.5%  t node::fs::LStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.4%    0.5%  t node::EnvGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+      1    0.4%    0.5%  t __os_once_gate_broadcast
+      1    0.4%    0.5%  t ___pfz_setup
+      1    0.4%    0.5%  T _os_unfair_recursive_lock_unlock
+      1    0.4%    0.5%  T _host_request_notification
+      1    0.4%    0.5%  T _OSAtomicDecrement32
+
+ [Summary]:
+   ticks  total  nonlib   name
+      1    0.4%    0.5%  JavaScript
+    193   82.5%   98.0%  C++
+     16    6.8%    8.1%  GC
+     37   15.8%          Shared libraries
+      3    1.3%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     84   53.8%   35.9%  t node::fs::BindingData::SelfSize() const
+     26   16.7%   11.1%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     13    8.3%    5.6%  T _semaphore_destroy
+      9    5.8%    3.8%  t node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      4    2.6%    1.7%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char)
+      4    2.6%    1.7%  T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    1.9%    1.3%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      3    1.9%    1.3%  t node::fs::InternalModuleReadJSON(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    1.3%    0.9%  t node::fs::Open(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    1.3%    0.9%  t node::fs::InternalModuleStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    1.3%    0.9%  T __simple_getenv
+      1    0.6%    0.4%  t node::fs::LStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.6%    0.4%  t node::EnvGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+      1    0.6%    0.4%  T _os_unfair_recursive_lock_unlock
+      1    0.6%    0.4%  T _OSAtomicDecrement32
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+     94   40.2%  t node::fs::BindingData::SelfSize() const
+     18   19.1%    Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+     16   88.9%      Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      3   18.8%        Function: ~<anonymous> node:http:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      3  100.0%            LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      2   12.5%        LazyCompile: ~lazyWebCrypto node:crypto:125:23
+      2  100.0%          LazyCompile: ~get node:crypto:369:8
+      2  100.0%            t node::fs::BindingData::SelfSize() const
+      2   12.5%        Function: ~<anonymous> node:internal/cluster/primary:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      2   12.5%        Function: ~<anonymous> node:internal/child_process:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      2   12.5%        Function: ~<anonymous> node:_http_client:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.3%        LazyCompile: ~lazyLoadStreams node:fs:2907:25
+      1  100.0%          LazyCompile: ~get ReadStream node:fs:3050:17
+      1  100.0%            t node::fs::BindingData::SelfSize() const
+      1    6.3%        LazyCompile: ~initCJSParse node:internal/modules/esm/translators:58:28
+      1  100.0%          LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1  100.0%            LazyCompile: ~moduleProvider node:internal/modules/esm/loader:467:28
+      1    6.3%        Function: ~<anonymous> node:cluster:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.3%        Function: ~<anonymous> node:child_process:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.3%        Function: ~<anonymous> node:_http_common:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      2   11.1%      Function: ^compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      2  100.0%        Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      2  100.0%          Function: ^Module._load node:internal/modules/cjs/loader:771:24
+      2  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+     16   17.0%    LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+     15   93.8%      Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      3   20.0%        Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+      3  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      3  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      3   20.0%        Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      3  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      3  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      2   13.3%        LazyCompile: ~initializeCJSLoader node:internal/bootstrap/pre_execution:509:29
+      2  100.0%          LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      2  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      2   13.3%        Function: ~<anonymous> node:internal/process/esm_loader:1:1
+      2  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.7%        LazyCompile: ~initializeSourceMapsHandlers node:internal/bootstrap/pre_execution:548:38
+      1  100.0%          LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    6.7%        Function: ~<anonymous> node:internal/source_map/source_map_cache:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.7%        Function: ~<anonymous> node:internal/modules/esm/module_map:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.7%        Function: ~<anonymous> node:internal/modules/esm/load:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.7%        Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1    6.3%      LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      4    4.3%    t node::fs::BindingData::SelfSize() const
+      2   50.0%      LazyCompile: ~resolvePackageTargetString node:internal/modules/esm/resolve:474:36
+      2  100.0%        LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:542:30
+      2  100.0%          LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:542:30
+      2  100.0%            LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:542:30
+      1   25.0%      LazyCompile: ~parsePackageName node:internal/modules/esm/resolve:814:26
+      1  100.0%        LazyCompile: ~packageResolve node:internal/modules/esm/resolve:853:24
+      1  100.0%          LazyCompile: ~moduleResolve node:internal/modules/esm/resolve:943:23
+      1  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1083:30
+      1   25.0%      Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1  100.0%        Function: ~<anonymous> node:diagnostics_channel:1:1
+      1  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      3    3.2%    Function: ^readPackage node:internal/modules/cjs/loader:301:21
+      3  100.0%      LazyCompile: ~resolveExports node:internal/modules/cjs/loader:483:24
+      2   66.7%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      2  100.0%          LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:865:35
+      2  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1   33.3%        Function: ^Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%          LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:865:35
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      2    2.1%    LazyCompile: ~WriteStream node:tty:84:21
+      2  100.0%      LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:45:35
+      1   50.0%        LazyCompile: ~getStdout node:internal/bootstrap/switches/is_main_thread:146:19
+      1  100.0%          LazyCompile: ~get node:internal/console/constructor:208:14
+      1  100.0%            LazyCompile: ~value node:internal/console/constructor:336:20
+      1   50.0%        LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:168:19
+      1  100.0%          Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/node.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      2    2.1%    LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      2  100.0%      LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      2  100.0%        LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:116:16
+      2  100.0%          LazyCompile: ~dispatch /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:98:45
+      2  100.0%            LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      2    2.1%    Function: ^numerosRandom file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:5:23
+      2  100.0%      LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      2  100.0%        LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      2  100.0%          LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:116:16
+      2  100.0%            LazyCompile: ~dispatch /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:98:45
+      1    1.1%    Script: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:1:1
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%          LazyCompile: ~run node:internal/modules/esm/module_job:188:12
+      1  100.0%            t node::fs::BindingData::SelfSize() const
+      1    1.1%    LazyCompile: ~toRealPath node:internal/modules/cjs/loader:404:20
+      1  100.0%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%        LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%          LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.1%    LazyCompile: ~setupWarningHandler node:internal/bootstrap/pre_execution:170:29
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.1%    LazyCompile: ~setupFetch node:internal/bootstrap/pre_execution:181:20
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.1%    LazyCompile: ~set search node:internal/url:956:13
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        LazyCompile: ~finalizeResolution node:internal/modules/esm/resolve:371:28
+      1  100.0%          LazyCompile: ~moduleResolve node:internal/modules/esm/resolve:943:23
+      1  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1083:30
+      1    1.1%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:105:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.1%    LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:177:16
+      1  100.0%      LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:136:31
+      1  100.0%        LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/application.js:165:29
+      1  100.0%          LazyCompile: ~app /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/express.js:38:21
+      1  100.0%            LazyCompile: ~emit node:events:460:44
+      1    1.1%    LazyCompile: ~hasObserver node:internal/perf/observe:457:21
+      1  100.0%      LazyCompile: ~ServerResponse node:_http_server:184:24
+      1  100.0%        LazyCompile: ~parserOnIncoming node:_http_server:914:26
+      1  100.0%          LazyCompile: ~parserOnHeadersComplete node:_http_common:72:33
+      1    1.1%    LazyCompile: ~findLongestRegisteredExtension node:internal/modules/cjs/loader:424:40
+      1  100.0%      LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%        LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/modules/esm/translators:161:67
+      1  100.0%            T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    1.1%    LazyCompile: ~expressInit /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/middleware/init.js:29:30
+      1  100.0%      LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%        LazyCompile: ~trim_prefix /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:293:23
+      1  100.0%          LazyCompile: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:280:64
+      1  100.0%            LazyCompile: ~process_params /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:338:47
+      1    1.1%    LazyCompile: ~etag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/etag/index.js:70:15
+      1  100.0%      LazyCompile: ~generateETag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/utils.js:273:32
+      1  100.0%        LazyCompile: ~send /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:111:25
+      1  100.0%          LazyCompile: ~json /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:250:25
+      1  100.0%            LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      1    1.1%    LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:45:35
+      1  100.0%      LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:168:19
+      1  100.0%        Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/node.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1    1.1%    LazyCompile: ~createPool node:buffer:155:20
+      1  100.0%      Function: ^allocate node:buffer:403:18
+      1  100.0%        Function: ^allocUnsafe node:buffer:378:42
+      1  100.0%          Function: ^tryCreateBuffer node:fs:428:25
+      1  100.0%            Function: ^readFileSync node:fs:464:22
+      1    1.1%    LazyCompile: ~createApplication /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/express.js:37:27
+      1  100.0%      Script: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:1:1
+      1  100.0%        t node::fs::BindingData::SelfSize() const
+      1  100.0%          T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1  100.0%            LazyCompile: ~run node:internal/modules/esm/module_job:188:12
+      1    1.1%    LazyCompile: ~arrayClone node:events:865:20
+      1  100.0%      LazyCompile: ~emit node:events:460:44
+      1    1.1%    LazyCompile: ~_writeRaw node:_http_outgoing:354:19
+      1  100.0%      LazyCompile: ~_send node:_http_outgoing:329:49
+      1  100.0%        LazyCompile: ~write_ node:_http_outgoing:790:16
+      1  100.0%          LazyCompile: ~end node:_http_outgoing:912:45
+      1  100.0%            LazyCompile: ~send /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:111:25
+      1    1.1%    LazyCompile: ~Socket node:net:294:16
+      1  100.0%      LazyCompile: ~WriteStream node:tty:84:21
+      1  100.0%        LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:45:35
+      1  100.0%          LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:168:19
+      1  100.0%            Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/node.js:1:1
+      1    1.1%    LazyCompile: ~Readable.push node:internal/streams/readable:233:35
+      1  100.0%      LazyCompile: ~parserOnMessageComplete node:_http_common:135:33
+      1    1.1%    LazyCompile: ~Module._resolveLookupPaths node:internal/modules/cjs/loader:678:38
+      1  100.0%      LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:865:35
+      1  100.0%        LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%          Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1  100.0%            Function: ^require node:internal/modules/cjs/helpers:101:31
+      1    1.1%    LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:865:35
+      1  100.0%      LazyCompile: ~<anonymous> node:internal/modules/esm/translators:233:36
+      1  100.0%        t node::fs::BindingData::SelfSize() const
+      1  100.0%          LazyCompile: ~cjsPreparseModuleExports node:internal/modules/esm/translators:194:34
+      1  100.0%            LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1    1.1%    LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%      Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1  100.0%        Function: ^require node:internal/modules/cjs/helpers:101:31
+      1  100.0%          Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      1    1.1%    LazyCompile: ~Module._extensions..json node:internal/modules/cjs/loader:1179:39
+      1  100.0%      Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%        Function: ^Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%          Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1  100.0%            Function: ^require node:internal/modules/cjs/helpers:101:31
+      1    1.1%    LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1  100.0%      Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%        LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%          Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1  100.0%            Function: ^require node:internal/modules/cjs/helpers:101:31
+      1    1.1%    LazyCompile: ~Hash node:internal/crypto/hash:62:14
+      1  100.0%      LazyCompile: ~createHash node:crypto:132:20
+      1  100.0%        LazyCompile: ~entitytag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/etag/index.js:39:20
+      1  100.0%          LazyCompile: ~etag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/etag/index.js:70:15
+      1  100.0%            LazyCompile: ~generateETag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/utils.js:273:32
+      1    1.1%    LazyCompile: ~Duplex node:internal/streams/duplex:54:16
+      1  100.0%      LazyCompile: ~Socket node:net:294:16
+      1  100.0%        LazyCompile: ~WriteStream node:tty:84:21
+      1  100.0%          LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:45:35
+      1  100.0%            LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:168:19
+      1    1.1%    LazyCompile: ~#createModuleJob node:internal/modules/esm/loader:466:19
+      1  100.0%      LazyCompile: ~getModuleJob node:internal/modules/esm/loader:425:21
+      1  100.0%        t node::fs::BindingData::SelfSize() const
+      1    1.1%    Function: ~<anonymous> node:zlib:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%        Function: ^compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      1  100.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:771:24
+      1    1.1%    Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.1%    Function: ^wrapfunction /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/depd/index.js:413:23
+      1  100.0%      Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/request.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1074:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      1    1.1%    Function: ^syncExports node:internal/bootstrap/loaders:304:14
+      1  100.0%      Function: ^compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      1  100.0%        Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%          Function: ^Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1    1.1%    Function: ^selectColor /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/debug.js:44:21
+      1  100.0%      LazyCompile: ~createDebug /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/debug.js:63:21
+      1  100.0%        Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/body-parser/lib/types/text.js:1:1
+      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1074:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1    1.1%    Function: ^getOwn node:internal/bootstrap/loaders:187:16
+      1  100.0%      Function: ^syncExports node:internal/bootstrap/loaders:304:14
+      1  100.0%        LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:263:25
+      1  100.0%          LazyCompile: ~loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1    1.1%    Function: ^getOptions node:internal/fs/utils:319:20
+      1  100.0%      Function: ^readFileSync node:fs:464:22
+      1  100.0%        Function: ^Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:771:24
+      1    1.1%    Function: ^forEachMimeType /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/mime-types/index.js:158:52
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        LazyCompile: ~populateMaps /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/mime-types/index.js:154:23
+      1  100.0%          Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/mime-types/index.js:1:1
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1074:37
+
+     26   11.1%  T node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     24   92.3%    Function: ^compileFunction node:vm:316:25
+     22   91.7%      Function: ^wrapSafe node:internal/modules/cjs/loader:1034:18
+     22  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1074:37
+     16   72.7%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+     16  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      6   27.3%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      6  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      2    8.3%      LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1034:18
+      2  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      2  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1   50.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+      1   50.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      2    7.7%    LazyCompile: ~compileFunction node:vm:316:25
+      2  100.0%      LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1034:18
+      2  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      2  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      2  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+
+     21    9.0%  T _semaphore_destroy
+      2    9.5%    t node::fs::BindingData::SelfSize() const
+      1   50.0%      LazyCompile: ~checkIsHttpToken node:_http_common:210:26
+      1  100.0%        LazyCompile: ~<anonymous> node:_http_outgoing:571:44
+      1  100.0%          LazyCompile: ~setHeader node:_http_outgoing:601:57
+      1  100.0%            LazyCompile: ~header /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:777:29
+      1   50.0%      Function: ^getOwn node:internal/bootstrap/loaders:187:16
+      1  100.0%        Function: ^syncExports node:internal/bootstrap/loaders:304:14
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/bootstrap/loaders:290:15
+      1  100.0%            T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    4.8%    LazyCompile: ~setupFetch node:internal/bootstrap/pre_execution:181:20
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    4.8%    LazyCompile: ~resolve node:path:1091:10
+      1  100.0%      LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:105:28
+      1  100.0%        LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    4.8%    LazyCompile: ~readPackageScope node:internal/modules/cjs/loader:332:26
+      1  100.0%      LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1  100.0%        LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%            LazyCompile: ~Module.require node:internal/modules/cjs/loader:1014:36
+      1    4.8%    LazyCompile: ~readFileSync node:fs:464:22
+      1  100.0%      LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1  100.0%        LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:771:24
+      1  100.0%            Function: ^Module.require node:internal/modules/cjs/loader:1014:36
+      1    4.8%    LazyCompile: ~parsersCb node:_http_common:158:65
+      1  100.0%      LazyCompile: ~alloc node:internal/freelist:15:8
+      1  100.0%        LazyCompile: ~connectionListenerInternal node:_http_server:557:36
+      1  100.0%          LazyCompile: ~defaultTriggerAsyncIdScope node:internal/async_hooks:455:36
+      1  100.0%            LazyCompile: ~connectionListener node:_http_server:551:28
+      1    4.8%    LazyCompile: ~parserOnHeadersComplete node:_http_common:72:33
+      1    4.8%    LazyCompile: ~onParseError node:internal/url:563:22
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        LazyCompile: ~URL node:internal/url:636:14
+      1  100.0%          LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1083:30
+      1  100.0%            LazyCompile: ~ObjectDefineProperty.__proto__ node:internal/modules/esm/loader:151:5
+      1    4.8%    LazyCompile: ~onError node:_http_incoming:432:17
+      1  100.0%      LazyCompile: ~processTicksAndRejections node:internal/process/task_queues:67:35
+      1    4.8%    LazyCompile: ~log node:internal/console/constructor:375:6
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:29:18
+      1  100.0%          LazyCompile: ~onceWrapper node:events:622:21
+      1  100.0%            LazyCompile: ~emit node:events:460:44
+      1    4.8%    LazyCompile: ~end node:_http_outgoing:912:45
+      1  100.0%      LazyCompile: ~send /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:111:25
+      1  100.0%        LazyCompile: ~json /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:250:25
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      1  100.0%            LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      1    4.8%    LazyCompile: ~Readable.read node:internal/streams/readable:402:35
+      1  100.0%      LazyCompile: ~Socket.read node:net:700:33
+      1  100.0%        LazyCompile: ~Socket node:net:294:16
+      1  100.0%          LazyCompile: ~onconnection node:net:1658:22
+
+     14    6.0%  T _posix_spawn_file_actions_adddup2
+
+     12    5.1%  /usr/lib/system/libsystem_pthread.dylib
+      2   16.7%    LazyCompile: ~fastparse /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/parseurl/index.js:95:20
+      2  100.0%      LazyCompile: ~parseurl /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/parseurl/index.js:35:19
+      2  100.0%        LazyCompile: ~getPathname /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:537:21
+      2  100.0%          LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:177:16
+      2  100.0%            LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:136:31
+      1    8.3%    LazyCompile: ~tryReadSync node:fs:443:21
+      1  100.0%      LazyCompile: ~readFileSync node:fs:464:22
+      1  100.0%        LazyCompile: ~cjsPreparseModuleExports node:internal/modules/esm/translators:194:34
+      1  100.0%          LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1  100.0%            t node::fs::BindingData::SelfSize() const
+      1    8.3%    LazyCompile: ~setupPerfHooks node:internal/bootstrap/pre_execution:341:24
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    8.3%    LazyCompile: ~readPackageScope node:internal/modules/cjs/loader:332:26
+      1  100.0%      LazyCompile: ~shouldUseESMLoader node:internal/modules/run_main:30:28
+      1  100.0%        LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1  100.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    8.3%    LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:136:31
+      1  100.0%      LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/application.js:165:29
+      1  100.0%        LazyCompile: ~app /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/express.js:38:21
+      1  100.0%          LazyCompile: ~emit node:events:460:44
+      1  100.0%            LazyCompile: ~parserOnIncoming node:_http_server:914:26
+      1    8.3%    LazyCompile: ~get href node:internal/url:753:11
+      1  100.0%      LazyCompile: ~<anonymous> node:internal/modules/run_main:55:29
+      1  100.0%        LazyCompile: ~loadESM node:internal/process/esm_loader:88:41
+      1  100.0%          t node::fs::BindingData::SelfSize() const
+      1    8.3%    LazyCompile: ~createHash node:crypto:132:20
+      1  100.0%      LazyCompile: ~entitytag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/etag/index.js:39:20
+      1  100.0%        LazyCompile: ~etag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/etag/index.js:70:15
+      1  100.0%          LazyCompile: ~generateETag /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/utils.js:273:32
+      1  100.0%            LazyCompile: ~send /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:111:25
+      1    8.3%    Function: ^handleErrorFromBinding node:internal/fs/utils:344:32
+      1  100.0%      LazyCompile: ~readSync node:fs:704:18
+      1  100.0%        LazyCompile: ~tryReadSync node:fs:443:21
+      1  100.0%          LazyCompile: ~readFileSync node:fs:464:22
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+
+     10    4.3%  /usr/lib/system/libsystem_c.dylib
+      1   10.0%    t node::fs::BindingData::SelfSize() const
+      1  100.0%      LazyCompile: ~getOwn node:internal/bootstrap/loaders:187:16
+      1  100.0%        LazyCompile: ~syncExports node:internal/bootstrap/loaders:304:14
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/bootstrap/loaders:290:15
+      1  100.0%            T node::loader::ModuleWrap::Evaluate(v8::FunctionCallbackInfo<v8::Value> const&)
+      1   10.0%    LazyCompile: ~value node:internal/console/constructor:336:20
+      1  100.0%      LazyCompile: ~log node:internal/console/constructor:375:6
+      1  100.0%        t node::fs::BindingData::SelfSize() const
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:29:18
+      1  100.0%            LazyCompile: ~onceWrapper node:events:622:21
+      1   10.0%    LazyCompile: ~toRealPath node:internal/modules/cjs/loader:404:20
+      1  100.0%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%        LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%          LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   10.0%    LazyCompile: ~stringify node:internal/modules/esm/translators:94:19
+      1  100.0%      LazyCompile: ~moduleStrategy node:internal/modules/esm/translators:114:56
+      1  100.0%        LazyCompile: ~moduleProvider node:internal/modules/esm/loader:467:28
+      1  100.0%          t node::fs::BindingData::SelfSize() const
+      1   10.0%    LazyCompile: ~setInterval node:timers:210:21
+      1  100.0%      LazyCompile: ~setupConnectionsTracking node:_http_server:431:34
+      1  100.0%        LazyCompile: ~Server node:_http_server:441:16
+      1  100.0%          LazyCompile: ~createServer node:http:58:22
+      1  100.0%            LazyCompile: ~listen /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/application.js:633:29
+      1   10.0%    LazyCompile: ~setCharset /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/utils.js:248:41
+      1  100.0%      LazyCompile: ~send /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:111:25
+      1  100.0%        LazyCompile: ~json /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/response.js:250:25
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      1  100.0%            LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      1   10.0%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:105:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   10.0%    LazyCompile: ~fastparse /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/parseurl/index.js:95:20
+      1  100.0%      LazyCompile: ~parseurl /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/parseurl/index.js:35:19
+      1  100.0%        LazyCompile: ~getPathname /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:537:21
+      1  100.0%          LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:177:16
+      1  100.0%            LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:136:31
+      1   10.0%    LazyCompile: ~createWritableStdioStream node:internal/bootstrap/switches/is_main_thread:45:35
+      1  100.0%      LazyCompile: ~getStderr node:internal/bootstrap/switches/is_main_thread:168:19
+      1  100.0%        Function: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/debug/src/node.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1074:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      1   10.0%    LazyCompile: ~ServerResponse node:_http_server:184:24
+      1  100.0%      LazyCompile: ~parserOnIncoming node:_http_server:914:26
+      1  100.0%        LazyCompile: ~parserOnHeadersComplete node:_http_common:72:33
+
+      9    3.8%  t node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      7   77.8%    Function: ^readSync node:fs:704:18
+      7  100.0%      Function: ^tryReadSync node:fs:443:21
+      7  100.0%        Function: ^readFileSync node:fs:464:22
+      5   71.4%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      5  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      2   28.6%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      2  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:986:33
+      2   22.2%    LazyCompile: ~readSync node:fs:704:18
+      2  100.0%      LazyCompile: ~tryReadSync node:fs:443:21
+      2  100.0%        LazyCompile: ~readFileSync node:fs:464:22
+      2  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1129:37
+      2  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:986:33
+
+      7    3.0%  /usr/lib/system/libsystem_kernel.dylib
+      1   14.3%    LazyCompile: ~toRealPath node:internal/modules/cjs/loader:404:20
+      1  100.0%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%        LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%          LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1  100.0%            Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   14.3%    LazyCompile: ~removeListener node:events:675:28
+      1  100.0%      LazyCompile: ~Readable.removeListener node:internal/streams/readable:916:45
+      1  100.0%        LazyCompile: ~detachSocket node:_http_server:270:62
+      1  100.0%          LazyCompile: ~resOnFinish node:_http_server:856:21
+      1  100.0%            LazyCompile: ~emit node:events:460:44
+      1   14.3%    LazyCompile: ~realpathSync node:fs:2474:22
+      1  100.0%      LazyCompile: ~toRealPath node:internal/modules/cjs/loader:404:20
+      1  100.0%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%          LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%            LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1   14.3%    LazyCompile: ~patchProcessObject node:internal/bootstrap/pre_execution:105:28
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   14.3%    LazyCompile: ~Socket._writeGeneric node:net:848:42
+      1  100.0%      LazyCompile: ~Socket._write node:net:885:35
+      1  100.0%        LazyCompile: ~writeOrBuffer node:internal/streams/writable:368:23
+      1  100.0%          LazyCompile: ~_write node:internal/streams/writable:286:16
+      1  100.0%            LazyCompile: ~Writable.write node:internal/streams/writable:336:36
+
+      5    2.1%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char)
+      1   20.0%    LazyCompile: ~realpathSync node:fs:2474:22
+      1  100.0%      LazyCompile: ~toRealPath node:internal/modules/cjs/loader:404:20
+      1  100.0%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:505:28
+      1  100.0%          LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%            LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1   20.0%    LazyCompile: ~popAsyncContext node:internal/async_hooks:553:25
+      1  100.0%      LazyCompile: ~emitAfterScript node:internal/async_hooks:517:25
+      1  100.0%        LazyCompile: ~processTicksAndRejections node:internal/process/task_queues:67:35
+      1   20.0%    LazyCompile: ~onParseError node:internal/url:563:22
+      1  100.0%      t node::fs::BindingData::SelfSize() const
+      1  100.0%        LazyCompile: ~URL node:internal/url:636:14
+      1  100.0%          LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1083:30
+      1  100.0%            LazyCompile: ~ObjectDefineProperty.__proto__ node:internal/modules/esm/loader:151:5
+      1   20.0%    LazyCompile: ~inherits node:util:234:18
+      1  100.0%      LazyCompile: ~createClientErrorConstructor /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/http-errors/index.js:127:39
+      1  100.0%        LazyCompile: ~forEachCode /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/http-errors/index.js:259:38
+      1  100.0%          t node::fs::BindingData::SelfSize() const
+      1  100.0%            LazyCompile: ~populateConstructorExports /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/http-errors/index.js:258:37
+
+      5    2.1%  /usr/lib/libc++.1.dylib
+      1   20.0%    LazyCompile: ~parseExtendedQueryString /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/utils.js:289:34
+      1  100.0%      LazyCompile: ~query /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/middleware/query.js:39:24
+      1  100.0%        LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%          LazyCompile: ~trim_prefix /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:293:23
+      1  100.0%            LazyCompile: ~<anonymous> /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/index.js:280:64
+      1   20.0%    LazyCompile: ~insert node:internal/timers:355:16
+      1  100.0%      LazyCompile: ~setInterval node:timers:210:21
+      1  100.0%        LazyCompile: ~setupConnectionsTracking node:_http_server:431:34
+      1  100.0%          LazyCompile: ~Server node:_http_server:441:16
+      1  100.0%            LazyCompile: ~createServer node:http:58:22
+      1   20.0%    LazyCompile: ~_addHeaderLine node:_http_incoming:385:24
+      1  100.0%      LazyCompile: ~get node:_http_incoming:112:16
+      1  100.0%        LazyCompile: ~parserOnIncoming node:_http_server:914:26
+      1  100.0%          LazyCompile: ~parserOnHeadersComplete node:_http_common:72:33
+
+      3    1.3%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      1   33.3%    LazyCompile: ~value node:internal/console/constructor:336:20
+      1  100.0%      LazyCompile: ~log node:internal/console/constructor:375:6
+      1  100.0%        t node::fs::BindingData::SelfSize() const
+      1  100.0%          LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:29:18
+      1  100.0%            LazyCompile: ~onceWrapper node:events:622:21
+      1   33.3%    Function: ~<anonymous> node:internal/fs/rimraf:1:1
+      1  100.0%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1  100.0%          Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1   33.3%    Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+      1  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:349:29
+      1  100.0%          Function: ~<anonymous> node:internal/modules/esm/load:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:316:27
+
+      3    1.3%  t node::fs::InternalModuleReadJSON(v8::FunctionCallbackInfo<v8::Value> const&)
+      3  100.0%    Function: ^read node:internal/modules/package_json_reader:16:14
+      3  100.0%      Function: ^readPackage node:internal/modules/cjs/loader:301:21
+      3  100.0%        Function: ^resolveExports node:internal/modules/cjs/loader:483:24
+      3  100.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:505:28
+      2   66.7%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:865:35
+      1   33.3%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:865:35
+
+      3    1.3%  UNKNOWN
+      1   33.3%    LazyCompile: ~statSync node:fs:1588:18
+      1  100.0%      LazyCompile: ~tryStatSync node:internal/modules/esm/resolve:164:3
+      1  100.0%        LazyCompile: ~finalizeResolution node:internal/modules/esm/resolve:371:28
+      1  100.0%          LazyCompile: ~moduleResolve node:internal/modules/esm/resolve:943:23
+      1  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1083:30
+      1   33.3%    LazyCompile: ~refreshRuntimeOptions node:internal/bootstrap/pre_execution:101:31
+      1  100.0%      LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:31:36
+      1  100.0%        Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   33.3%    LazyCompile: ~numerosRandom file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:5:23
+      1  100.0%      LazyCompile: ~<anonymous> file:///Users/farid/Desktop/ch/backend/backend%20-%2032115S/Clase31-32/profiling/server.js:15:28
+      1  100.0%        LazyCompile: ~handle /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%          LazyCompile: ~next /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:116:16
+      1  100.0%            LazyCompile: ~dispatch /Users/farid/Desktop/ch/backend/backend - 32115S/Clase31-32/node_modules/express/lib/router/route.js:98:45
+
+      3    1.3%  T _kdebug_trace_string
+
